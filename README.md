@@ -37,8 +37,8 @@ Usé [Vite](https://vitejs.dev/) porque:
 ```
 src/
 ├── assets/             # Archivos estáticos
-├── App.jsx             # Componente principal
-├── main.jsx            # Entrada principal
+├── App.tsx             # Componente principal
+├── main.tsx            # Entrada principal
 ```  
 
 ---
