@@ -2,7 +2,9 @@ import './App.css'
 
 function App() {
   return (
-    <div></div>
+    <div>
+      <h1 className='text-red-600'>Proyecto Express Grupo 9</h1>
+    </div>
   )
 }
 
