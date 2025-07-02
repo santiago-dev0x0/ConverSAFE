@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent } from "react";
-import imgPlaceholder from "../assets/react.svg";
+import InitialsAvatar from "./InitialsAvatar";
 
 function Chat() {
   const [user, setUser] = useState({ id: '01', name: 'Carlos Mendez' });
@@ -17,17 +17,17 @@ function Chat() {
     }
   };
   return (
-    <section className="py-2">
-      <ul className="px-2 space-y-4 py-4">
+    <section className="flex flex-col py-2 min-h-dvh">
+      <ul className="px-2 space-y-4 py-4 flex-1">
         {
           messages.map((msg, index) => (
             <li key={index}>
-              <div className="flex items-center gap-2">
-                <div>
-                  <img src={imgPlaceholder} alt={user.name} />
+              <div className="flex gap-2">
+                <div className="mt-1">
+                  <InitialsAvatar name={user.name} size={32} />
                 </div>
                 <div>
-                  <strong>{user.name}</strong> <span>{new Date().toLocaleTimeString()}</span>
+                  <strong>{user.name}</strong> <span className="text-sm">{new Date().toLocaleTimeString()}</span>
                   <p>{msg}</p>
                 </div>
               </div>
