@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent } from "react";
-import InitialsAvatar from "./InitialsAvatar";
+import Message from "./Message";
 
 function Chat() {
   const [user, setUser] = useState({ id: '01', name: 'Carlos Mendez' });
@@ -22,15 +22,7 @@ function Chat() {
         {
           messages.map((msg, index) => (
             <li key={index}>
-              <div className="flex gap-2">
-                <div className="mt-1">
-                  <InitialsAvatar name={user.name} size={32} />
-                </div>
-                <div>
-                  <strong>{user.name}</strong> <span className="text-sm">{new Date().toLocaleTimeString()}</span>
-                  <p>{msg}</p>
-                </div>
-              </div>
+              <Message name={user.name} msg={msg} />
             </li>
           ))
         }
