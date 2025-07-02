@@ -1,6 +1,6 @@
 import { RectangleVertical } from "lucide-react";
 
-export default function Componente1() {
+export default function DashboardHeader() {
   return (
     <div className="w-80 bg-white border-l">
     <div className="p-4 border-b">

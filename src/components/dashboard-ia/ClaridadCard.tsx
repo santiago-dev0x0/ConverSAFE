@@ -1,12 +1,13 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import type { ClaridadData } from "@/types/dashboard.types";
 import { RectangleVertical } from "lucide-react";
-const data = [
-  { nombre: "Clara", porcentaje: 35, color: "bg-green-500" },
-  { nombre: "Vaga", porcentaje: 25, color: "bg-yellow-500" },
-];
 
-export default function ParticipacionCard() {
+interface ClaridadCardProps {
+  data: ClaridadData[];
+}
+
+export default function ClaridadCard({ data }: ClaridadCardProps) {
   return (
     <Card className="w-full max-w-md p-4 gap-4">
       <CardHeader className="gap-0 p-0">

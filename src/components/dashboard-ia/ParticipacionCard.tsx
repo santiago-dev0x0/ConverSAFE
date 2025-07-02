@@ -1,14 +1,12 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import type { ParticipacionData } from "@/types/dashboard.types";
 import { RectangleVertical } from "lucide-react";
-const data = [
-  { nombre: "Carlos", porcentaje: 35, color: "bg-green-500" },
-  { nombre: "Ana", porcentaje: 25, color: "bg-yellow-500" },
-  { nombre: "Jorge", porcentaje: 20, color: "bg-purple-500" },
-  { nombre: "Laura", porcentaje: 20, color: "bg-red-500" },
-];
 
-export default function ParticipacionCard() {
+interface ParticipacionCardProps {
+  data: ParticipacionData[];
+}
+export default function ParticipacionCard({ data }: ParticipacionCardProps) {
   return (
     <Card className="w-full max-w-md p-4 gap-4">
       <CardHeader className="gap-0 p-0">

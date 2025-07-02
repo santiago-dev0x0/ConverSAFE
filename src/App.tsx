@@ -1,23 +1,27 @@
 import './App.css'
 import Chat from './components/Chat'
-import ParticipacionCard from './components/participacionCard'
-import EmocionalCard from './components/emocionalCard'
-import ClaridadCard from './components/claridadCard'
-import DecicionesCard from './components/decicionesCard'
-import SugerenciasIaCard from './components/sugerenciasIaCard'
-import Componente1 from './components/componente1'
+import ParticipacionCard from './components/dashboard-ia/ParticipacionCard'
+import EmocionalCard from './components/dashboard-ia/EmocionalCard'
+import ClaridadCard from './components/dashboard-ia/ClaridadCard'
+import DecicionesCard from './components/dashboard-ia/DecicionesCard'
+import SugerenciasIaCard from './components/dashboard-ia/SugerenciasIaCard'
+import DashboardHeader from './components/dashboard-ia/DashboardHeader'
+import { useQuery } from './hooks/useQuery'
+import { type DashboardData } from './types/dashboard.types'
+import { dashboardService } from './services/dashboard/dashboard.service'
 
 function App() {
+  const { data } = useQuery<DashboardData>(dashboardService.getDashboardData);
   return (
     <div className='flex'>
       <Chat />
       <div className='overflow-y-scroll h-dvh'>
-        <Componente1 />
-        <ParticipacionCard />
-        <EmocionalCard />
-        <ClaridadCard />
-        <DecicionesCard />
-        <SugerenciasIaCard />
+        <DashboardHeader />
+        <ParticipacionCard data={data?.participacion || []} />
+        <EmocionalCard data={data?.emocional || {positivo: 0, neutral: 0, tenso: 0}} />
+        <ClaridadCard data={data?.claridad || []} />
+        <DecicionesCard data={data?.decisiones || {resueltas: 0, pendientes: 0}} />
+        <SugerenciasIaCard data={data?.sugerencias || []} />
       </div>
     </div>
   )
