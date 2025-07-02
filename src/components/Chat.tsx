@@ -25,7 +25,7 @@ function Chat() {
   };
 
   return (
-    <section className="flex flex-col py-2 min-h-dvh">
+    <section className="flex flex-col py-2 h-dvh flex-1">
       <ul className="px-2 space-y-4 py-4 flex-1">
         {
           messages.map((msg, index) => (

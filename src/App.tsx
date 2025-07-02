@@ -9,15 +9,16 @@ import Componente1 from './components/componente1'
 
 function App() {
   return (
-    <div>
+    <div className='flex'>
       <Chat />
-      <h1 className='text-red-600'>Proyecto Express Grupo 9</h1>
-      <Componente1 />
-      <ParticipacionCard />
-      <EmocionalCard />
-      <ClaridadCard />
-      <DecicionesCard />
-      <SugerenciasIaCard />
+      <div className='overflow-y-scroll h-dvh'>
+        <Componente1 />
+        <ParticipacionCard />
+        <EmocionalCard />
+        <ClaridadCard />
+        <DecicionesCard />
+        <SugerenciasIaCard />
+      </div>
     </div>
   )
 }
