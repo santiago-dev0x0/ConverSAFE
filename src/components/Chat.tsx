@@ -176,7 +176,7 @@ function Chat() {
   };
 
   return (
-    <section className="flex flex-col py-2 h-dvh flex-1">
+    <section className="flex flex-col py-2 flex-1">
       {/* Estado de conexión */}
       {!isConnected && (
         <div className="bg-yellow-100 text-yellow-800 px-4 py-2 text-center">
