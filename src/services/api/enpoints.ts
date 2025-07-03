@@ -5,5 +5,8 @@ export const API_ENDPOINTS = {
         EMOCIONAL: "/dashboard/emocional",
         PARTICIPACION: "/dashboard/participacion",
         SUGERENCIAS: "/dashboard/sugerencias",
+    },
+    AUTH:{
+        LOGIN: "/auth/login",
     }
 } as const;

@@ -1,12 +1,26 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import type { ParticipacionData } from "@/types/dashboard.types";
+import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 import { RectangleVertical } from "lucide-react";
+import { useDashboardStore } from "@/store/dashboard.store";
 
-interface ParticipacionCardProps {
-  data: ParticipacionData[];
-}
-export default function ParticipacionCard({ data }: ParticipacionCardProps) {
+// Colores predefinidos para participación
+const PARTICIPATION_COLORS = [
+  '#4CAF50', // verde
+  '#2196F3', // azul
+  '#FFC107', // amarillo
+  '#9C27B0', // morado
+  '#FF5722', // naranja
+  '#607D8B', // gris azulado
+];
+
+export default function ParticipacionCard() {
+  const participacion = useDashboardStore((state) => state.participacionPorUsuario);
+
+  const data = participacion.map((p, index) => ({
+    nombre: p.nombre,
+    porcentaje: p.porcentaje,
+    color: PARTICIPATION_COLORS[index % PARTICIPATION_COLORS.length]
+  }));
+
   return (
     <Card className="w-full max-w-md p-4 gap-4">
       <CardHeader className="gap-0 p-0">
@@ -15,19 +29,25 @@ export default function ParticipacionCard({ data }: ParticipacionCardProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <ul className="">
-          {data.map((user) => (
-            <li key={user.nombre} className="flex items-center gap-2">
-              <span className="w-16">{user.nombre}</span>
-              <Progress
-                value={user.porcentaje}
-                indicatorColor={user.color}
-                className="flex-1 h-2"
-              />
-              <span className="w-8 text-right">{user.porcentaje}%</span>
-            </li>
+        <div className="space-y-4">
+          {data.map((item, index) => (
+            <div key={index} className="space-y-1">
+              <div className="flex justify-between text-sm">
+                <span>{item.nombre}</span>
+                <span>{item.porcentaje}%</span>
+              </div>
+              <div className="h-2 rounded-full bg-gray-200">
+                <div
+                  className="h-full rounded-full"
+                  style={{
+                    width: `${item.porcentaje}%`,
+                    backgroundColor: item.color,
+                  }}
+                />
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </CardContent>
     </Card>
   );
