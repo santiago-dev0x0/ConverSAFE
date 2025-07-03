@@ -9,6 +9,7 @@ import DashboardHeader from './components/dashboard-ia/DashboardHeader'
 import { useQuery } from './hooks/useQuery'
 import { type DashboardData } from './types/dashboard.types'
 import { dashboardService } from './services/dashboard/dashboard.service'
+import Header from './components/Header'
 import { Button } from './components/ui/button'
 import { useAuthStore } from './store/auth.store'
 import { useNavigate } from 'react-router-dom'
@@ -20,19 +21,22 @@ function App() {
   const navigate = useNavigate()
 
   return (
-    <div className='flex'>
-      <Chat />
-      <div className='overflow-y-scroll h-dvh'>
-        <DashboardHeader />
-        <ParticipacionCard />
-        <EmocionalCard />
-        <ClaridadCard data={data?.claridad || []} />
-        <DecicionesCard data={data?.decisiones || {resueltas: 0, pendientes: 0}} />
-        <SugerenciasIaCard />
-        <Button onClick={() => {
-          logout()
-          navigate('/login')
-        }}>Logout</Button>
+    <div className='flex flex-col h-screen'>
+      <Header />
+      <div className='flex flex-1 overflow-hidden'>
+        <Chat />
+        <div className='overflow-y-scroll'>
+          <DashboardHeader />
+          <ParticipacionCard />
+          <EmocionalCard />
+          <ClaridadCard data={data?.claridad || []} />
+          <DecicionesCard data={data?.decisiones || { resueltas: 0, pendientes: 0 }} />
+          <SugerenciasIaCard />
+          <Button onClick={() => {
+            logout()
+            navigate('/login')
+          }}>Logout</Button>
+        </div>
       </div>
     </div>
   )
