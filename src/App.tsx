@@ -9,19 +9,23 @@ import DashboardHeader from './components/dashboard-ia/DashboardHeader'
 import { useQuery } from './hooks/useQuery'
 import { type DashboardData } from './types/dashboard.types'
 import { dashboardService } from './services/dashboard/dashboard.service'
+import Header from './components/Header'
 
 function App() {
   const { data } = useQuery<DashboardData>(dashboardService.getDashboardData);
   return (
-    <div className='flex'>
-      <Chat />
-      <div className='overflow-y-scroll h-dvh'>
-        <DashboardHeader />
-        <ParticipacionCard data={data?.participacion || []} />
-        <EmocionalCard data={data?.emocional || {positivo: 0, neutral: 0, tenso: 0}} />
-        <ClaridadCard data={data?.claridad || []} />
-        <DecicionesCard data={data?.decisiones || {resueltas: 0, pendientes: 0}} />
-        <SugerenciasIaCard data={data?.sugerencias || []} />
+    <div className='flex flex-col h-screen'>
+      <Header />
+      <div className='flex flex-1 overflow-hidden'>
+        <Chat />
+        <div className='overflow-y-scroll'>
+          <DashboardHeader />
+          <ParticipacionCard data={data?.participacion || []} />
+          <EmocionalCard data={data?.emocional || { positivo: 0, neutral: 0, tenso: 0 }} />
+          <ClaridadCard data={data?.claridad || []} />
+          <DecicionesCard data={data?.decisiones || { resueltas: 0, pendientes: 0 }} />
+          <SugerenciasIaCard data={data?.sugerencias || []} />
+        </div>
       </div>
     </div>
   )
