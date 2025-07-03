@@ -1,11 +1,16 @@
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 import { RectangleVertical } from "lucide-react";
-import { type EmocionalData } from "@/types/dashboard.types";
+import { useDashboardStore } from "@/store/dashboard.store";
 
-interface EmocionalCardProps {
-  data: EmocionalData;
-}
-export default function EmocionalCard({ data }: EmocionalCardProps) {
+export default function EmocionalCard() {
+  const tonosPorcentaje = useDashboardStore((state) => state.tonosPorcentaje);
+
+  const data = {
+    positivo: tonosPorcentaje.positivo || 0,
+    neutral: tonosPorcentaje.neutro || 0,
+    tenso: tonosPorcentaje.tenso || 0
+  };
+
   return (
     <Card className="w-full max-w-md p-4 gap-4 ">
       <CardHeader className="gap-0 p-0">

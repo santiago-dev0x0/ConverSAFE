@@ -10,9 +10,16 @@ import { useQuery } from './hooks/useQuery'
 import { type DashboardData } from './types/dashboard.types'
 import { dashboardService } from './services/dashboard/dashboard.service'
 import Header from './components/Header'
+import { Button } from './components/ui/button'
+import { useAuthStore } from './store/auth.store'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
+  // Solo usamos useQuery para claridad y decisiones
   const { data } = useQuery<DashboardData>(dashboardService.getDashboardData);
+  const logout = useAuthStore(state => state.logout)
+  const navigate = useNavigate()
+
   return (
     <div className='flex flex-col h-screen'>
       <Header />
@@ -20,11 +27,15 @@ function App() {
         <Chat />
         <div className='overflow-y-scroll'>
           <DashboardHeader />
-          <ParticipacionCard data={data?.participacion || []} />
-          <EmocionalCard data={data?.emocional || { positivo: 0, neutral: 0, tenso: 0 }} />
+          <ParticipacionCard />
+          <EmocionalCard />
           <ClaridadCard data={data?.claridad || []} />
           <DecicionesCard data={data?.decisiones || { resueltas: 0, pendientes: 0 }} />
-          <SugerenciasIaCard data={data?.sugerencias || []} />
+          <SugerenciasIaCard />
+          <Button onClick={() => {
+            logout()
+            navigate('/login')
+          }}>Logout</Button>
         </div>
       </div>
     </div>

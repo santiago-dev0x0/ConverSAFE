@@ -1,11 +1,15 @@
-import { RectangleVertical } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
-import type { SugerenciaData } from "@/types/dashboard.types";
+import { RectangleVertical } from "lucide-react";
+import { useDashboardStore } from "@/store/dashboard.store";
 
-interface SugerenciasIaCardProps {
-  data: SugerenciaData[];
-}
-export default function SugerenciasIaCard({ data }: SugerenciasIaCardProps) {
+export default function SugerenciasIaCard() {
+  const sugerencia = useDashboardStore((state) => state.sugerenciaGeneral);
+
+  const data = sugerencia ? [{
+    texto: sugerencia,
+    color: '#4CAF50'
+  }] : [];
+
   return (
     <Card className="w-full max-w-md p-4 gap-4">
       <CardHeader className="gap-0 p-0">
@@ -14,12 +18,17 @@ export default function SugerenciasIaCard({ data }: SugerenciasIaCardProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="space-y-3 text-sm">
-          {data.map((item) => (
-            <div className="flex items-start gap-2">
-              <div className={`w-1.5 h-1.5 ${item.color} rounded-full mt-2`}></div>
-              <span className="text-gray-600">{item.texto}</span>
-          </div>
+        <div className="space-y-2">
+          {data.map((sugerencia, index) => (
+            <div
+              key={index}
+              className="p-3 rounded-lg"
+              style={{ backgroundColor: `${sugerencia.color}15` }}
+            >
+              <p className="text-sm" style={{ color: sugerencia.color }}>
+                {sugerencia.texto}
+              </p>
+            </div>
           ))}
         </div>
       </CardContent>
