@@ -18,7 +18,7 @@ function App() {
   const { data } = useQuery<DashboardData>(dashboardService.getDashboardData);
   const logout = useAuthStore(state => state.logout)
   const navigate = useNavigate()
-
+console.log(import.meta.env.VITE_API_URL)
   return (
     <div className='flex'>
       <Chat />

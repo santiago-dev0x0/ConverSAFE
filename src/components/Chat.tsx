@@ -6,7 +6,7 @@ import { useDashboardStore } from "@/store/dashboard.store";
 import { Button } from "./ui/button";
 
 // Definimos la URL del backend
-const SOCKET_URL = "http://localhost:3000";
+const SOCKET_URL = import.meta.env.VITE_API_URL;
 
 interface DashboardUpdate {
   totalMensajes: number;
